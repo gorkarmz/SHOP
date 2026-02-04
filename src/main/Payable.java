@@ -10,7 +10,7 @@ import model.Amount;
  *
  * @author gorka
  */
-public interface Playable {
+public interface Payable {
     boolean pay (Amount amount);
     
     
