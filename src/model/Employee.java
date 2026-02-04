@@ -4,13 +4,15 @@
  */
 package model;
 
+import main.Logable;
+
 /**
  *
  * @author gorka
  */
-public class Employee extends Person {
-    
-    private final int employeeld = 123;
+public class Employee extends Person implements Logable {
+
+    private final int EMPLOYEE_ID = 123;
     private final String password = "test";
 
     public Employee(String name) {
@@ -25,12 +27,12 @@ public class Employee extends Person {
         this.name = name;
     }
 
+  
+
+  
+
     @Override
-    public String toString() {
-        return "Employee{" + "employeeld=" + employeeld + ", password=" + password + '}';
+    public boolean login(int user, String password) {
+        return this.EMPLOYEE_ID == user && this.password.equals(password);
     }
-    
-
-
-    
 }

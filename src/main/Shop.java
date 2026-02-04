@@ -15,7 +15,7 @@ public class Shop {
     //private Sale[] sales;
     private static ArrayList<Sale> sales = new ArrayList<>();
     int counterSales = 0;
-   // private static Employee empleado;
+    private static Employee empleado;
 
     final static double TAX_RATE = 1.04;
 
@@ -33,16 +33,16 @@ public class Shop {
 
     public static void main(String[] args) {
         Shop shop = new Shop();
+        if (!shop.initSession()) {
 
+            return;
+        }
         shop.loadInventory();
 
         Scanner scanner = new Scanner(System.in);
         int opcion = 0;
         boolean exit = false;
 
-   
-      
-         
         do {
             System.out.println("\n");
             System.out.println("===========================");
@@ -113,7 +113,6 @@ public class Shop {
         addProduct(new Product("Hamburguesa", 30.00, true, 30));
         addProduct(new Product("Fresa", 5.00, true, 20));
     }
-    
 
     /**
      * show current total cash
@@ -317,6 +316,30 @@ public class Shop {
             inventory.remove(product);
             System.out.println("Producto eliminado ");
 
+        }
+    }
+
+    public boolean initSession() {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Introduzca numero de empleado:");
+        int user = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Introduzca contraseña:");
+        String password = sc.nextLine();
+
+        Employee emp = new Employee("gorka");
+
+        boolean success = emp.login(user, password);
+
+        if (success) {
+            System.out.println("Login correcto");
+            return true;
+        } else {
+            System.out.println("Datos incorrectos");
+            return false;
         }
     }
 
