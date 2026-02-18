@@ -37,7 +37,7 @@ public class Client extends Person implements Payable {
 
         double finalBalance = balance.getValue() - amount.getValue();
 
-        if (finalBalance > 0) {
+        if (finalBalance >= 0) {
 
             balance.setValue(finalBalance);
 

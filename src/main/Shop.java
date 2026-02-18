@@ -240,11 +240,13 @@ public class Shop {
 
         boolean paid = client.pay(totalAmount);
 
+        cash.setValue(cash.getValue() + totalAmount.getValue());
+
         if (paid) {
-            cash.setValue(cash.getValue() + totalAmount.getValue());
             System.out.println("Venta realizada con éxito, total: " + totalAmount);
         } else {
-            System.out.println("El cliente no ha podido pagar. Cantidad a deber: " + totalAmount);
+            System.out.println("El cliente no tiene saldo suficiente.");
+            System.out.println("Cantidad a deber: " + totalAmount);
         }
 
 // guardar la venta
