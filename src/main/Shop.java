@@ -323,6 +323,8 @@ public class Shop {
         if (product != null) {
             inventory.remove(product);
             System.out.println("Producto eliminado ");
+        } else {
+            System.out.println("Error: el producto no existe en el inventario");
 
         }
     }
