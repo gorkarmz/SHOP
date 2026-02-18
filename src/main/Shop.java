@@ -5,6 +5,7 @@ import model.Product;
 import model.Sale;
 import java.util.Scanner;
 import model.Amount;
+import model.Client;
 import model.Employee;
 
 public class Shop {
@@ -198,7 +199,7 @@ public class Shop {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Realizar venta, escribir nombre cliente");
-        String client = sc.nextLine();
+        String cliente = sc.nextLine();
 
         // CAMBIO: usar Amount para totalAmount
         Amount totalAmount = new Amount(0.0);
@@ -235,11 +236,18 @@ public class Shop {
         // aplicar impuesto
         totalAmount.setValue(totalAmount.getValue() * TAX_RATE);
 
-        // sumar a cash
-        cash.setValue(cash.getValue() + totalAmount.getValue());
-        System.out.println("Venta realizada con éxito, total: " + totalAmount);
+        Client client = new Client(cliente);
 
-        // guardar la venta
+        boolean paid = client.pay(totalAmount);
+
+        if (paid) {
+            cash.setValue(cash.getValue() + totalAmount.getValue());
+            System.out.println("Venta realizada con éxito, total: " + totalAmount);
+        } else {
+            System.out.println("El cliente no ha podido pagar. Cantidad a deber: " + totalAmount);
+        }
+
+// guardar la venta
         sales.add(counterSales, new Sale(client, shoppingcart, totalAmount));
         counterSales++;
     }

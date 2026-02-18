@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Sale {
-	String client;
+	Client client;
 	ArrayList<Product> products;
 	Amount amount;
 
-    public Sale(String client, ArrayList<Product> products, Amount amount) {
+    public Sale(Client client, ArrayList<Product> products, Amount amount) {
         this.client = client;
         this.products = products;
         this.amount = amount;
     }
 
-    public String getClient() {
+    public Client getClient() {
         return client;
     }
 
-    public void setClient(String client) {
+    public void setClient(Client client) {
         this.client = client;
     }
 

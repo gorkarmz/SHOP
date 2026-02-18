@@ -6,36 +6,48 @@ package model;
 
 import main.Payable;
 
-
-
 /**
  *
  * @author gorka
  */
 public class Client extends Person implements Payable {
+
     private int memberId;
     private Amount balance;
-    
-  
+
     private final int MEMBER_ID = 456;
     private final Amount BALANCE = new Amount(50);
-    
-    public Client (String name){
+
+    public Client(String name) {
         super(name);
         this.balance = this.BALANCE;
         this.memberId = this.MEMBER_ID;
     }
-    
-    public Amount getBalance(){
+
+    public Amount getBalance() {
         return this.balance;
     }
-    
-    public int getId(){
+
+    public int getId() {
         return this.memberId;
     }
 
     @Override
     public boolean pay(Amount amount) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        double finalBalance = balance.getValue() - amount.getValue();
+
+        if (finalBalance > 0) {
+
+            balance.setValue(finalBalance);
+
+            return true;
+
+        } else {
+
+            return false;
+        }
+
     }
+
 }
